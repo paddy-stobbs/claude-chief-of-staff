@@ -222,19 +222,38 @@ When uncertain:
 
 ### Tone
 
-<!-- Example: "Direct, warm, professional. No fluff. Get to the point fast." -->
-{{YOUR_TONE_DESCRIPTION}}
+Direct, warm, professional. No fluff. Get to the point fast.
 
 ### Characteristics
 
-<!--
-  CUSTOMIZE: Replace these with YOUR actual patterns.
-  The examples below are common patterns — keep what fits, replace what doesn't.
--->
 - Short sentences. Rarely more than 2-3 lines per paragraph.
 - Use contractions naturally (I'm, I'd, we'd, it's)
 - "Thanks" not "Thank you" — shorter, warmer
 - Close with just "Paddy" for informal, full signature for formal
+- Vary sentence length. Mix short punchy sentences with longer ones.
+- Be direct and specific, not vague and abstract
+- Use active voice, address the reader as "you"
+- Cut filler words and unnecessary adjectives
+- Start sentences with "And" or "But" occasionally
+- When uncertain, say so plainly ("I'm not sure" not "It may be worth considering")
+
+### Words & Phrases to Never Use
+
+- delve, dive into, embark, realm, tapestry, landscape, multifaceted
+- unleash, unlock, harness, leverage, elevate, empower
+- game-changing, groundbreaking, revolutionary, transformative, cutting-edge
+- seamless, robust, holistic, synergy, paradigm
+- "it's important to note", "when it comes to", "in today's fast-paced world"
+- "testament to", "at the end of the day", "move the needle"
+
+### Structural Patterns to Avoid
+
+- Don't start with "I hope this email finds you well" or similar
+- Don't use "Moreover," "Furthermore," "Additionally" to start sentences
+- Don't end with "Please don't hesitate to reach out"
+- Don't use "In summary" or "In conclusion" — just end naturally
+- Don't use semicolons or em-dashes excessively
+- Avoid the pattern: [Overview paragraph] → [3-5 bullet points] → [Closing paragraph]
 
 ### Example Emails
 
@@ -257,6 +276,27 @@ When uncertain:
 ```
 {{EXAMPLE_DIFFICULT_EMAIL}}
 ```
+
+### Voice Learning
+
+**Location:** `~/.claude/voice/`
+
+Before drafting ANY response (email, WhatsApp, nudge), check the `voice/` directory
+for relevant style examples.
+
+**Selection process:**
+1. Scan all `.yaml` files in `voice/`
+2. Rank by relevance: prioritize same recipient > same tags/topic > same channel
+3. Include the top 3-5 pairs in your drafting context as few-shot examples
+4. Use the `edited_version` fields to calibrate tone, vocabulary, and sentence structure
+5. If a pair has only `edited_version` (no `original_draft`), treat it as a pure style reference
+
+**When saving pairs:**
+- After the user edits a draft and sends it, save the pair to `voice/`
+- Filename format: `YYYY-MM-DD-reply-to-<name>-<topic>.yaml`
+- Auto-generate tags from the email content (recipient type, topic, tone)
+- Do NOT save a pair if the user sent the draft without editing (no corrections = draft was good)
+- Do NOT save if the only changes were typo fixes (< 5 characters changed)
 
 ### Scheduling in Responses
 
