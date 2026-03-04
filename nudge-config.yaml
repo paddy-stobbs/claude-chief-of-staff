@@ -1,0 +1,25 @@
+# Nudge Tracker Configuration
+# Controls how the /nudge command identifies and handles stale threads
+
+# How many days without a reply before a thread is considered stale
+default_window_days: 3
+
+# Which channels to scan for stale threads
+channels:
+  gmail: true
+  whatsapp: true
+
+# Email patterns to ignore (these never need follow-ups)
+ignore_patterns:
+  - "noreply@"
+  - "no-reply@"
+  - "notifications@"
+  - "donotreply@"
+  - "mailer-daemon@"
+  - "newsletter@"
+
+# Maximum number of nudges to send to the same contact for the same thread
+max_nudges_per_contact: 2
+
+# Minimum days between nudges to the same thread
+nudge_cooldown_days: 5
