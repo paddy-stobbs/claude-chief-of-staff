@@ -1,30 +1,39 @@
-# My AI Chief of Staff
+# AI Chief of Staff (Forked & Extended)
 
-I'm [Mike Murchison](https://linkedin.com/in/mikemurchison), CEO of [Ada](https://ada.cx) — the agentic customer experience platform. Over the past few months, I've been building something on Claude Code that has fundamentally changed how I work: an AI chief of staff that connects to every tool I use, knows my priorities and relationships, and operates 24/7 in the background.
+A fork of [Mike Murchison's claude-chief-of-staff](https://github.com/mimurchison/claude-chief-of-staff), extended with voice learning, CRM-driven follow-ups, and a draft-edit-send workflow.
 
-A lot of people have been asking about the setup — at the Claude Code meetup, in conversations with other CEOs, and across our team at Ada where we've been building AI-native operations into how we run the company. So I'm open-sourcing it for you to try, adapt, and improve.
+I'm [Paddy Stobbs](https://linkedin.com/in/paddystobbs), Co-Founder & CEO at [Stackfix](https://www.stackfix.com). Mike's original project gave me the foundation — an AI chief of staff running on Claude Code that connects to every tool I use. I've been extending it to fit how I actually work: drafting in my voice, following up on sales pipeline, and learning from every correction I make.
 
-This repo gives you the same foundation. Your context, your goals, your voice.
-
-Watch the walkthrough and demo [here](https://x.com/mimurchison/status/2022368529417224480)
+Watch Mike's original walkthrough [here](https://x.com/mimurchison/status/2022368529417224480).
 
 ---
 
-## What It Does
+## What's New in This Fork
 
-Four pillars. One system.
+Three capabilities on top of Mike's original system:
 
-### 1. Communicate
-Triage your inbox across email, Slack, and messaging. Get draft responses written in your voice, prioritized by who matters most. I went from 90 minutes of morning inbox processing to about 5.
+### Voice Learning
+Claude learns how I write by capturing before/after pairs whenever I edit a draft. Over time, first drafts get closer to send-ready. Style examples live in `voice/` and are loaded as few-shot context before any drafting.
 
-### 2. Learn
-Morning briefings, meeting prep, market signals — all automated. Before every meeting, Claude pulls context from every source: past emails, meeting notes, CRM data, calendar history. You walk in prepared without doing the prep.
+### CRM-Driven Nudges
+The `/nudge` command pulls from a Notion CRM pipeline, finds follow-ups due today, enriches them with Gmail history and meeting notes from the Document Hub, then drafts tailored outreach. Stale thread scanning runs as a secondary pass.
 
-### 3. Deepen Relationships
-A personal CRM that builds itself. 160+ contacts tracked, auto-enriched every 15 minutes across all channels. Staleness alerts when important relationships go quiet. Suggested outreach with context. I never forget to follow up.
+### Draft-Edit-Send Loop
+Every draft — triage responses, nudges, outreach — goes through the same flow: draft, review, edit, send (or save as Gmail draft). When I edit before sending, the before/after pair is saved to improve future drafts.
 
-### 4. Achieve Goals
-Define your quarterly objectives. Every triage decision, scheduling recommendation, and task prioritization is filtered through what you said matters most. Claude tells me when my calendar doesn't match my goals.
+---
+
+## The Original Four Pillars
+
+Built on Mike's core architecture:
+
+**Communicate** — Triage inbox across email, Slack, and messaging. Draft responses in your voice, prioritised by who matters most.
+
+**Learn** — Morning briefings, meeting prep, context from every source before every interaction.
+
+**Deepen Relationships** — Contact tracking with staleness alerts. Auto-enrichment across channels.
+
+**Achieve Goals** — Quarterly objectives filter every triage decision, scheduling call, and task prioritisation.
 
 ---
 
@@ -33,51 +42,33 @@ Define your quarterly objectives. Every triage decision, scheduling recommendati
 ### Prerequisites
 
 - [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) installed and authenticated
-- Gmail MCP server (for email)
-- Google Calendar MCP server (for scheduling)
+- Gmail MCP server
+- Google Calendar MCP server
 
-### 3 Steps
+### Setup
 
 ```bash
-# 1. Clone
-git clone https://github.com/mimurchison/claude-chief-of-staff.git
+git clone https://github.com/paddy-stobbs/claude-chief-of-staff.git
 cd claude-chief-of-staff
 
-# 2. Install
 chmod +x install.sh
 ./install.sh
 
-# 3. Try it
 claude
 # Then type: /gm
 ```
 
-First morning briefing in under 15 minutes from clone.
-
 ---
 
-## Features
+## Commands
 
-### Morning Briefing (`/gm`)
-Start every day knowing exactly what matters. Calendar, tasks, urgent messages, signals — before you open your inbox.
-
-### Inbox Triage (`/triage`)
-Scan all connected channels and get a prioritized list with draft responses.
-
-| Tier | Action | Example |
-|------|--------|---------|
-| **Tier 1** | Respond NOW | Board member asking for input |
-| **Tier 2** | Handle today | Customer escalation |
-| **Tier 3** | FYI / archive | Newsletters, notifications |
-
-### Task Management (`/my-tasks`)
-Tasks with execution, not just tracking. Claude drafts the email, does the research, preps the document.
-
-### Contact Enrichment (`/enrich`)
-Auto-scans email, Slack, WhatsApp, calendar, and meeting notes to build rich relationship profiles. Alerts you when contacts go stale. Suggests what to talk about.
-
-### Goal-Aligned Everything
-Your `goals.yaml` is the source of truth. Claude references it constantly — triaging email, proposing meetings, scoring tasks. It pushes back when your time allocation drifts from your stated priorities.
+| Command | What It Does |
+|---------|-------------|
+| `/gm` | Morning briefing — calendar, tasks, urgent messages |
+| `/triage` | Inbox scan with prioritised draft responses |
+| `/nudge` | CRM pipeline follow-ups + stale thread nudges |
+| `/my-tasks` | Task management with execution, not just tracking |
+| `/enrich` | Auto-build contact profiles from all channels |
 
 ---
 
@@ -85,91 +76,59 @@ Your `goals.yaml` is the source of truth. Claude references it constantly — tr
 
 ```
 claude-chief-of-staff/
-├── CLAUDE.md                    # Your AI operating system — customize this
+├── CLAUDE.md                    # Your AI operating system — customise this
 ├── install.sh                   # One-command setup
-├── goals.yaml                   # Quarterly objectives template
-├── my-tasks.yaml                # Task tracking
-├── schedules.yaml               # Automation schedules
+├── nudge-config.yaml            # Nudge tracker settings
 ├── contacts/
 │   └── example-contact.md       # Contact file template
 ├── commands/
 │   ├── gm.md                    # Morning briefing
-│   ├── triage.md                # Inbox triage
+│   ├── triage.md                # Inbox triage + draft-edit-send loop
+│   ├── nudge.md                 # Follow-up tracker (CRM + stale threads)
 │   ├── my-tasks.md              # Task management
 │   └── enrich.md                # Contact enrichment
+├── voice/
+│   ├── seed-*.yaml              # Starter voice examples
+│   └── README.md                # How voice learning works
 └── docs/
-    ├── setup-guide.md           # Detailed setup walkthrough
-    ├── mcp-servers.md           # MCP server installation
-    └── customization.md         # Make it yours
+    ├── setup-guide.md
+    ├── mcp-servers.md
+    ├── customization.md
+    ├── commands/
+    │   └── nudge.md             # Extended nudge spec (CRM version)
+    └── plans/                   # Design docs
 ```
+
+Operational files (`goals.yaml`, `my-tasks.yaml`, `nudge-log.yaml`) are created locally by `install.sh` and gitignored.
 
 ---
 
 ## MCP Servers
 
-More servers = more capability. Start with the essentials, add over time.
-
 | Server | Required? | What It Enables |
 |--------|-----------|-----------------|
 | Gmail | **Yes** | Email triage, drafting, sending |
 | Google Calendar | **Yes** | Scheduling, availability, meeting prep |
+| Notion | Recommended | CRM pipeline, meeting notes, document hub |
 | Slack | Recommended | Slack triage, channel monitoring |
 | WhatsApp | Optional | WhatsApp message triage |
 | iMessage | Optional | iMessage triage (macOS only) |
-| Granola | Optional | Meeting notes context |
-| PostHog | Optional | Product analytics |
 
 See [docs/mcp-servers.md](docs/mcp-servers.md) for installation instructions.
 
 ---
 
-## Customization
+## Customisation
 
-The `CLAUDE.md` file is the core. It defines:
-
-- **Who you are** and what you care about
-- **How you write** so every draft sounds like you
-- **Your goals** so Claude knows what matters
-- **Your constraints** (mine: home by 5:30 for dinner)
-- **Your relationships** and how to manage them
-
-The longer you use it, the better it gets. Context compounds.
+`CLAUDE.md` is the core — it defines who you are, how you write, what you care about, and how Claude should operate. The voice system learns from your edits over time.
 
 See [docs/customization.md](docs/customization.md) for the full guide.
 
 ---
 
-## Philosophy
+## Credits
 
-A few beliefs this system is built on:
-
-1. **AI should push you, not just serve you.** A great chief of staff challenges priorities, says "no" to low-leverage work, and keeps you honest about where your time goes.
-
-2. **Clarity beats comprehensiveness.** Fewer, clearer priorities. Explicit tradeoffs. Fast decisions with flagged assumptions.
-
-3. **Systems compound.** Every interaction makes the system smarter. Contact notes get richer. Writing style gets more accurate. The longer you use it, the better it gets.
-
-4. **Ship, don't polish.** Drafts should be send-ready. Outputs should be usable immediately. Bias toward closing loops.
-
----
-
-## Contributing
-
-This is early and evolving. If you build useful commands, improve the templates, or add MCP server guides — contributions are very welcome. I'd love to hear what you build with it.
-
-1. Fork the repo
-2. Create a feature branch
-3. Submit a pull request
-
-Or just open an issue with feedback.
-
----
-
-## Stay Connected
-
-- [@mimurchison](https://twitter.com/mimurchison) on Twitter/X
-- [Mike Murchison](https://linkedin.com/in/mikemurchison) on LinkedIn
-- [Ada](https://ada.cx) — the agentic customer experience platform
+Original project by [Mike Murchison](https://twitter.com/mimurchison) — [claude-chief-of-staff](https://github.com/mimurchison/claude-chief-of-staff). The core architecture, philosophy, and base commands are his work. This fork extends it with voice learning, CRM integration, and the draft-edit-send workflow.
 
 ---
 
