@@ -37,7 +37,7 @@ Report progress as you go.
    - Query: Recent DMs and @mentions
    - Skip: Channel chatter unless directly relevant
 
-4. **WhatsApp** — If connected, check recent messages
+4. **WhatsApp** — Check recent messages (required channel)
    - Focus on: Direct messages requiring response
 
 5. **iMessage** — If connected (macOS only)
@@ -103,15 +103,51 @@ TIER 3 — FYI
 SUMMARY: [X] items need action, [Y] drafts ready to send.
 ```
 
-### Step 6: Await Approval
+### Step 6: Draft-Edit-Send Loop
 
-**NEVER send any message without explicit approval.**
+After generating drafts for triaged items, present each draft using this interactive loop:
 
-After presenting drafts, wait for the user to:
-- Say "Send" or "Y" to approve a specific draft
-- Say "Send all" to approve all drafts
-- Edit a draft and then approve
-- Skip items
+**For each draft, present:**
+
+```
+---
+[CHANNEL] Reply to [SENDER] — [SUBJECT/TOPIC]
+Thread context: [1-2 sentence summary of what they said]
+
+Draft:
+> [The generated draft text, using voice/ examples for style matching]
+
+Actions: [s]end | [e]dit | [skip] | [r]egenerate | [g]mail draft
+---
+```
+
+**Action handling:**
+
+- **[s]end** — Send immediately via the channel's MCP server (Gmail or WhatsApp). Do NOT save a voice pair. Move to next item.
+
+- **[e]dit** — Ask the user to provide their edited version. After they provide it:
+  1. Show the edited version for confirmation
+  2. Ask: "Send this? [y/n]"
+  3. If yes: send via MCP, then save the original-vs-edited pair to `voice/` as a YAML file
+  4. If no: return to the actions menu with the edited text as the new draft
+
+- **[skip]** — Move to the next item without sending anything.
+
+- **[r]egenerate** — Generate a new draft with a different approach. Pick different voice/ examples or adjust tone. Present the new draft with the same action menu.
+
+- **[g]mail draft** (Gmail only) — Save as a draft in Gmail using the `gmail_create_draft` tool. Inform the user: "Draft saved in Gmail. Open Gmail to add attachments or review formatting before sending." If the user edited before choosing this option, save the voice pair. Move to next item.
+
+**"Draft all" mode:**
+
+If the user says "draft all" after seeing the triage summary, generate drafts for ALL actionable items (Tier 1 and Tier 2), then walk through them one by one using the loop above.
+
+**Voice example loading:**
+
+Before generating any draft, load relevant examples from `voice/`:
+1. Check `~/.claude/voice/` for `.yaml` files
+2. Find pairs matching: same recipient > same topic > same channel
+3. Include top 3-5 as few-shot style references in the drafting prompt
+4. If no relevant pairs exist, rely on CLAUDE.md writing style section
 
 ### Guidelines
 
