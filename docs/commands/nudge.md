@@ -37,7 +37,7 @@ and represent scheduled follow-ups with prospects and customers.
 
 ### Step 1A: Fetch All Active CRM Entries
 
-Query the Notion database with ID `25b2a405bb848006a676ffd5a94b0505`.
+Query the Notion database with ID `{{CRM_DATABASE_ID}}`.
 Fetch ALL pages in the database — do not filter by keyword or rely on semantic search.
 Use pagination to ensure you retrieve every record.
 
@@ -60,7 +60,7 @@ b) **Search Gmail** for recent threads with this contact or their company.
    Look for the most recent email exchange, any outstanding questions,
    commitments made, or proposals sent.
 
-c) **Query the Document Hub** (database ID `25b2a405bb848084baf7c3403c6955c7`)
+c) **Query the Document Hub** (database ID `{{DOCUMENT_HUB_DATABASE_ID}}`)
    for meeting notes and documents linked to this customer.
    The `Customer` relation field cross-references the CRM database.
    Filter by the matching customer relation, then read the most recent

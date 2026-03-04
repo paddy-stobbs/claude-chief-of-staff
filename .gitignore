@@ -21,3 +21,15 @@ cache/
 local/
 *.local.md
 *.local.yaml
+
+# Operational data (contains personal info — keep local only)
+nudge-log.yaml
+goals.yaml
+my-tasks.yaml
+schedules.yaml
+contacts/
+
+# Voice examples (may contain real email drafts)
+voice/*.yaml
+!voice/seed-*.yaml
+!voice/README.md
