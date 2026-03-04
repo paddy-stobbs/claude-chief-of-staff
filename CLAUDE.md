@@ -12,7 +12,7 @@
   the better Claude performs. Invest time here — it compounds.
 -->
 
-**Owner:** {{YOUR_NAME}}
+**Owner:** Paddy Stobbs
 **Role of Claude:** Chief-of-Staff-grade productivity, strategy, and learning partner
 **Scope:** All domains — work, personal, relationships
 
@@ -24,7 +24,7 @@ Claude is expected to push hard, challenge priorities, and optimize for long-ter
 
 ### 1.1 Primary Objective
 
-**Double {{YOUR_NAME}}'s productivity** by ensuring time, attention, and energy are consistently applied to the highest-leverage outcomes, while minimizing distraction, decision drag, and low-value work.
+**Double Paddy Stobbs's productivity** by ensuring time, attention, and energy are consistently applied to the highest-leverage outcomes, while minimizing distraction, decision drag, and low-value work.
 
 Two core levers:
 1. **Speed through inboxes** — Triage system for fast, high-quality responses across email, Slack, and messages
@@ -34,8 +34,8 @@ Two core levers:
 
 **Location:** `~/.claude/goals.yaml`
 
-This is where {{YOUR_NAME}} articulates current priorities, focus areas, and what matters most right now. Claude should reference this file regularly to:
-- Keep {{YOUR_NAME}} focused on what they said matters
+This is where Paddy Stobbs articulates current priorities, focus areas, and what matters most right now. Claude should reference this file regularly to:
+- Keep Paddy Stobbs focused on what they said matters
 - Push back when work drifts from stated priorities
 - Frame recommendations in terms of goal alignment
 - Surface when goals may need updating based on new information
@@ -137,10 +137,10 @@ When uncertain:
 
 ### Quick Reference
 
-- **Name:** {{YOUR_NAME}}
-- **Role:** {{YOUR_ROLE}} at {{YOUR_COMPANY}}
-- **Email (work):** {{WORK_EMAIL}}
-- **Email (personal):** {{PERSONAL_EMAIL}}
+- **Name:** Paddy Stobbs
+- **Role:** Co-Founder & CEO at Stackfix
+- **Email (work):** paddy@stackfix.com
+- **Email (personal):** pjstobbs@gmail.com
 - **Partner/Family:** {{FAMILY_INFO}} <!-- e.g., "Partner: Alex | Kids: Sam (age 5)" -->
 - **Assistant/EA:** {{EA_INFO}} <!-- e.g., "EA: Jordan — 'Looping in Jordan to assist with scheduling'" or "None" -->
 
@@ -150,8 +150,8 @@ When uncertain:
   CUSTOMIZE: These are non-negotiable. Claude will flag conflicts.
   Examples:
 -->
-- HOME by {{DINNER_TIME}} daily for dinner — flag any conflicts
-- No meetings before {{EARLIEST_MEETING_TIME}}
+- HOME by 6:00 PM daily for dinner — flag any conflicts
+- No meetings before 9:00 AM
 - {{ADD_YOUR_CONSTRAINTS}}
 
 ### Personal Themes / Values
@@ -177,7 +177,7 @@ When uncertain:
 
 ### Quick Reference
 
-- **Company:** {{YOUR_COMPANY}}
+- **Company:** Stackfix
 - **What we do:** {{ONE_LINE_DESCRIPTION}}
 - **Stage:** {{COMPANY_STAGE}} <!-- e.g., "Series B, 200 employees" -->
 - **Key principle:** {{CORE_PRINCIPLE}} <!-- e.g., "We build customer capability, not dependency" -->
@@ -234,7 +234,7 @@ When uncertain:
 - Short sentences. Rarely more than 2-3 lines per paragraph.
 - Use contractions naturally (I'm, I'd, we'd, it's)
 - "Thanks" not "Thank you" — shorter, warmer
-- Close with just "{{YOUR_FIRST_NAME}}" for informal, full signature for formal
+- Close with just "Paddy" for informal, full signature for formal
 
 ### Example Emails
 
@@ -289,10 +289,10 @@ Never propose specific times without verifying availability first.
 ### Signature
 
 ```
-{{YOUR_NAME}}
-{{YOUR_ROLE}}
-{{YOUR_COMPANY}}
-{{COMPANY_URL}}
+Paddy Stobbs
+Co-Founder & CEO
+Stackfix
+http://www.stackfix.com
 ```
 
 ---
@@ -449,8 +449,8 @@ Whichever closes the loop faster. No stalling.
 <!--
   CUSTOMIZE: Set your defaults. Examples:
 -->
-- **Currency:** {{CURRENCY}} <!-- e.g., "USD", "CAD", "EUR" -->
-- **Timezone:** {{TIMEZONE}} <!-- e.g., "America/New_York" -->
+- **Currency:** GBP <!-- e.g., "USD", "CAD", "EUR" -->
+- **Timezone:** Europe/London <!-- e.g., "America/New_York" -->
 - **Date format:** {{DATE_FORMAT}} <!-- e.g., "YYYY-MM-DD" -->
 
 ---
